@@ -3,7 +3,7 @@ int main() {
 	int n,i;
 	printf("Enter a positive integer:");
 	scanf("%d",&n);
-	if(n<+0){
+	if(n<=0){
 		printf("Please enter a positive integer greater than 0.n");
 		return 1;
 	}
@@ -14,3 +14,4 @@ int main() {
 	printf("\n");
 	return 0;
 }
+
