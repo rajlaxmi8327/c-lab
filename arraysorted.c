@@ -1,29 +1,70 @@
-#include<stdio.h>
-int main() {
-	int arr[100], n, i, j, temp;
-	printf("Enter number of elements in the array:");
-	scanf ("%d", &n);
-	if (n <= 0 || n > 100) {
-		printf ("Invalid number of elements. Please enter a value between 1 and 100.\n");
-		return 1;
-	}
-	printf("Enter %d integers:\n", n);
-	for (i = 0; i < n; i++) {
-		scanf("%d", &arr[i]);
-	}
+#include <stdio.h>
+
+// Function to swap two elements
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// Function to sort the array in ascending order
+void sortAscending(int arr[], int n) {
+	int i, j;
 	for (i = 0; i < n - 1; i++) {
-		for (j = 0; j < n - 1 - i; j++){
-			if (arr[j] > arr[j + 1]) {
-				temp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j+1] = temp;
-							}
-		}
-	}
-	printf("Sorted array in ascending order:\n");
-	for (i = 0; i < n; i++){
-		printf("%d",arr[i]);
-	}
-	printf("\n");
-	return 0;
+        for ( j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(&arr[j], &arr[j + 1]);
+            }
+        }
+    }
+}
+
+// Function to sort the array in descending order
+void sortDescending(int arr[], int n) {
+    int i, j;
+	for (i = 0; i < n - 1; i++) {
+        for (
+		 j = 0; j < n - i - 1; j++) {
+            if (arr[j] < arr[j + 1]) {
+                swap(&arr[j], &arr[j + 1]);
+            }
+        }
+    }
+}
+
+// Function to print the array
+void printArray(int arr[], int n) {
+   int i;
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int n;
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    int i;
+	for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Original array: ");
+    printArray(arr, n);
+
+    // Sort in ascending order
+    sortAscending(arr, n);
+    printf("Array in ascending order: ");
+    printArray(arr, n);
+
+    // Sort in descending order
+    sortDescending(arr, n);
+    printf("Array in descending order: ");
+    printArray(arr, n);
+
+    return 0;
 }
